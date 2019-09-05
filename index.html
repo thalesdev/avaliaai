@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Avalia Aí</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <link rel="shortcut icon" href="thumbfile.jpg" type="image/x-icon">
+</head>
+
+<body ng-app="app">
+    <div ui-view ng-controller="mainController">
+    <nav>
+        <div class="nav-wrapper teal lighten-2">
+        <a href="#" class="brand-logo logo">Avalia Aí</a>
+        </div>
+    </nav>
+    <div class="row page" ng-controller="moviesController">
+            <div class="input-field col s8">
+                    <i class="fa fa-search fa-sm prefix teal-text"></i>
+                    <input id="icon_prefix" placeholder="Pesquise pelo nome do filme" type="text" class="validate" ng-model="query">
+            </div>
+            <div class="col s4 sort_bar">
+                    <a class="waves-effect waves-light btn right" ng-click="setOrder(false)" ng-class="{'cyan lighten-2' : !order}">
+                        <i class="fas fa-sort-amount-down-alt"></i>
+                    </a> 
+                    <a class="waves-effect waves-light btn right" ng-click="setOrder(true)" ng-class="{'cyan lighten-2' : order}">
+                        <i class="fas fa-sort-amount-up-alt"></i>
+                    </a> 
+            </div>
+            <div class="col s12">
+                <div class="col s12 m4 "  ng-repeat="movie in getMovies() | filter : query | orderBy : 'titulo' : order">
+                    <div class="card movie_card">
+                        <div class="card-image">
+                            <img ng-src={{movie.poster}} class="poster">
+                         </div>
+                        <div class="card-content">
+                            <span class="card-title black-text">{{movie.titulo}}</span>
+                        
+                            <p>{{movie.sinopse}}</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="starset"> 
+                                <span class="badge blue white-text" ng-if="movie.rating != 0">
+                                    Sua Avaliação: {{movie.rating}}
+                                </span>
+                                <div  ng-if="movie.rating == 0">
+                                    Avaliação:
+                                    <ul class="stars">
+                                        <a ng-repeat="star in stars" class="starlink  blue-text lighten-5-text star" ng-click="setRating(star, movie)"><i class="fa fa-star"></i></a>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="#" ng-click="removeMovie(movie)">Remover Filme</a>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    </div>
+        
+        
+
+
+    </div>
+    <script src="api/filmes.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="scripts/services/mainService.js"></script>
+    <script src="scripts/controllers/mainController.js"></script>
+    <script src="scripts/controllers/moviesController.js"></script>
+    <script src="https://kit.fontawesome.com/2380d070da.js"></script>
+</body>
+
+</html>

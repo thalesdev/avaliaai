@@ -1,0 +1,32 @@
+.logo{
+    padding:  0px 20px !important;
+}
+.page {
+    margin-top:10px !important;
+}
+.sort_bar a {
+    margin: auto 5px !important;
+}
+.poster {
+    height: 300px;
+}
+.movie_card {
+    height: 650px;    
+}
+.starlink {
+    margin:0px 2px !important;
+    cursor:pointer;
+}
+.starset{
+    width:  100%;
+    min-height: 40px;
+}
+.star {
+    opacity: 0.4;
+}
+.star:hover {
+    opacity: 1;
+}
+.card-title {
+    text-shadow: 0px 2px 16px rgba(255,255,255,.5);
+}
